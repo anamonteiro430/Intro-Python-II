@@ -1,5 +1,5 @@
 from room import Room
-
+from player import Player
 # Declare all the rooms
 
 room = {
@@ -24,6 +24,7 @@ earlier adventurers. The only exit is to the south."""),
 
 # Link rooms together
 
+
 room['outside'].n_to = room['foyer']
 room['foyer'].s_to = room['outside']
 room['foyer'].n_to = room['overlook']
@@ -39,6 +40,7 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
+
 # Write a loop that:
 #
 # * Prints the current room name
@@ -49,3 +51,50 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+user_quits = False
+
+#while loop here
+while not user_quits:
+    print("**** WELCOME TO MY ADVENTURE GAME ****")
+    start = input("***** Press [s] to start or [q] to quit *****")
+    ### select color name
+    if start == "s":
+        print('select a color')
+        color = input("[r]ed [g]reen [b]lue ")
+        if color == "g":
+            player = Player('outside', 'green')
+            print(player)
+        elif color == "r":
+            player = Player('outside', 'red')
+            print(player)
+        elif color == "b":
+            player = Player('outside', 'blue')
+            print(player)
+        else:
+            print("That's not a color!")
+            color = input("[r]ed [g]reen [b]lue ")
+        #first promtp, Outside
+        current_room = room['outside']
+        print(current_room)
+        print("Where do you want to go")
+        move = input('[n]orth , [s]outh, [e]ast, [w]est')
+        if move == "n":
+            print('current room: ')
+            current_room = room['outside'].n_to
+            print(current_room)
+        elif move == "s" or move == "e" or move == "w":
+            print('You hit a wall, try again!')
+        else:
+            print("That's not a direction")
+    elif start == "q":
+        quit = input('Do you want to exit the game? [y]/[n]')
+        if quit == "y":
+            #close game
+            print('closing')
+            user_quits = True
+        else:
+            break
+    else:
+        print('Invalid')
+
+
