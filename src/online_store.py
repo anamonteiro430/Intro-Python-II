@@ -88,3 +88,8 @@ class Purchase:
         self.customer = customer
         self.purchase_price = product.price
         self.purchase_data = datetime.now()
+
+
+
+
+
